@@ -1,0 +1,43 @@
+linterPath = atom.packages.getLoadedPackage("linter").path
+Linter = require "#{linterPath}/lib/linter"
+fs = require "fs"
+path = require "path"
+less = require 'less'
+{Range} = require 'atom'
+
+class LinterLess extends Linter
+  
+  @syntax: 'source.css.less'
+  
+  linterName: 'less'
+  
+  parseLessFile: (data, filePath, callback) ->
+    
+    options =
+      verbose: false
+      silent: true
+      paths: [@cwd]
+      filename: filePath
+    
+    parser = new(less.Parser)(options)
+    parser.parse data, (err, tree) =>
+      
+      return callback([]) unless err
+      
+      lineIdx = Math.max 0, err.line - 1
+      
+      callback([
+        line: err.line,
+        col: err.column,
+        level: 'error',
+        message: err.message
+        linter: @linterName,
+        range: new Range([lineIdx, err.column], [lineIdx, @lineLengthForRow(lineIdx)])
+      ])
+  
+  lintFile: (filePath, callback)->
+    fs.readFile filePath, 'utf8', (err, data) =>
+      return callback([]) if err
+      @parseLessFile data, filePath, callback
+
+module.exports = LinterLess

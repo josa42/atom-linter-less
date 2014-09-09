@@ -1,0 +1,16 @@
+{
+  "name": "linter-less",
+  "main": "./lib/init",
+  "version": "0.1.0",
+  "description": "Lint `less` on the fly, using less",
+  "linter-package": true,
+  "activationEvents": [],
+  "repository": "https://github.com/josa42/atom-linter-less",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "less": "^1.7.5"
+  }
+}
