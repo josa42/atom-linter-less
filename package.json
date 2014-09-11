@@ -5,7 +5,7 @@
   "description": "Lint `less` on the fly, using less",
   "linter-package": true,
   "activationEvents": [],
-  "repository": "https://github.com/josa42/atom-linter-less",
+  "repository": "https://github.com/AtomLinter/linter-less",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
