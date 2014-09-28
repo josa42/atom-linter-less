@@ -22,7 +22,7 @@ class LinterLess extends Linter
     parser = new(less.Parser)(options)
     parser.parse data, (err, tree) =>
       
-      return callback([]) unless err
+      return callback([]) if not err or err.filename is not filePath
       
       lineIdx = Math.max 0, err.line - 1
       
