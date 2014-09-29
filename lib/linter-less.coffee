@@ -13,13 +13,12 @@ class LinterLess extends Linter
   
   parseLessFile: (data, filePath, callback) ->
     
-    options =
+    parser = new less.Parser (
       verbose: false
       silent: true
       paths: [@cwd]
       filename: filePath
-    
-    parser = new(less.Parser)(options)
+    )
     parser.parse data, (err, tree) =>
       
       return callback([]) if not err or err.filename is not filePath
