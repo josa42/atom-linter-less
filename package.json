@@ -1,7 +1,7 @@
 {
   "name": "linter-less",
   "main": "./lib/init",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Lint `less` on the fly, using less",
   "linter-package": true,
   "activationEvents": [],
