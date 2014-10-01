@@ -6,25 +6,36 @@ less = require 'less'
 {Range} = require 'atom'
 
 class LinterLess extends Linter
-  
+
   @syntax: 'source.css.less'
-  
+
   linterName: 'less'
-  
+
   parseLessFile: (data, filePath, callback) ->
-    
+
     parser = new less.Parser (
       verbose: false
       silent: true
       paths: [@cwd]
       filename: filePath
     )
+
     parser.parse data, (err, tree) =>
-      
+
+      if not err
+        try
+          tree.toCSS(
+            ieCompat: atom.config.get 'linter-less.ieCompatibilityChecks'
+            strictUnits: atom.config.get 'linter-less.strictUnits'
+            strictMath: atom.config.get 'linter-less.strictMath'
+          )
+        catch toCssErr
+          err = toCssErr
+
       return callback([]) if not err or err.filename isnt filePath
-      
+
       lineIdx = Math.max 0, err.line - 1
-      
+
       callback([
         line: err.line,
         col: err.column,
@@ -33,7 +44,7 @@ class LinterLess extends Linter
         linter: @linterName,
         range: new Range([lineIdx, err.column], [lineIdx, @lineLengthForRow(lineIdx)])
       ])
-  
+
   lintFile: (filePath, callback)->
     fs.readFile filePath, 'utf8', (err, data) =>
       return callback([]) if err
