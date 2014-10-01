@@ -13,7 +13,7 @@ class LinterLess extends Linter
 
   parseLessFile: (data, filePath, callback) ->
 
-    parser = new less.Parser (
+    parser = new less.Parser(
       verbose: false
       silent: true
       paths: [@cwd]
@@ -25,9 +25,9 @@ class LinterLess extends Linter
       if not err
         try
           tree.toCSS(
-            ieCompat: atom.config.get 'linter-less.ieCompatibilityChecks'
-            strictUnits: atom.config.get 'linter-less.strictUnits'
-            strictMath: atom.config.get 'linter-less.strictMath'
+            ieCompat: @config 'ieCompatibilityChecks'
+            strictUnits: @config 'strictUnits'
+            strictMath: @config 'strictMath'
           )
         catch toCssErr
           err = toCssErr
@@ -45,9 +45,12 @@ class LinterLess extends Linter
         range: new Range([lineIdx, err.column], [lineIdx, @lineLengthForRow(lineIdx)])
       ])
 
-  lintFile: (filePath, callback)->
+  lintFile: (filePath, callback) ->
     fs.readFile filePath, 'utf8', (err, data) =>
       return callback([]) if err
       @parseLessFile data, filePath, callback
+
+  config: (key) ->
+    atom.config.get "linter-less.#{key}"
 
 module.exports = LinterLess
