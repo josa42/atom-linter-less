@@ -15,3 +15,9 @@ module.exports =
       type: 'boolean'
       default: false
       description: 'Turn on or off strict math, where in strict mode, math requires brackets.'
+    includePath:
+      type: 'array'
+      description: 'Set include paths. Separated by \',\'.'
+      default: []
+      items:
+        type: 'string'

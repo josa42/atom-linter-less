@@ -16,7 +16,7 @@ class LinterLess extends Linter
     parser = new less.Parser(
       verbose: false
       silent: true
-      paths: [@cwd]
+      paths: [@cwd, @config('includePath')...]
       filename: filePath
     )
 
