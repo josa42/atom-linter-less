@@ -1,3 +1,6 @@
+## 0.3.0
+* Fix deprecationed calls
+
 ## 0.2.1
 * Fix issue with imports (#2)
 

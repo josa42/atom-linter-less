@@ -4,7 +4,6 @@
   "version": "0.3.1",
   "description": "Lint `less` on the fly, using less",
   "linter-package": true,
-  "activationEvents": [],
   "repository": "https://github.com/AtomLinter/linter-less",
   "license": "MIT",
   "engines": {
