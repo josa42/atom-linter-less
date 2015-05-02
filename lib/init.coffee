@@ -1,8 +1,17 @@
 module.exports =
   activate: ->
     console.log 'activate linter-less'
-  
-  configDefaults:
-    ieCompatibilityChecks: true
-    strictUnits: false
-    strictMath: false
+
+  config:
+    ieCompatibilityChecks:
+      title: 'IE Compatibility Checks'
+      type: 'boolean'
+      default: true
+    strictUnits:
+      type: 'boolean'
+      default: false
+      description: 'Allow mixed units, e.g. 1px+1em or 1px*1px which have units that cannot be represented.'
+    strictMath:
+      type: 'boolean'
+      default: false
+      description: 'Turn on or off strict math, where in strict mode, math requires brackets.'
