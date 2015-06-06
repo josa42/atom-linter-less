@@ -3,6 +3,9 @@ module.exports =
     console.log 'activate linter-less'
 
   config:
+    ignoreUndefinedVariables:
+      type: 'boolean'
+      default: false
     ieCompatibilityChecks:
       title: 'IE Compatibility Checks'
       type: 'boolean'

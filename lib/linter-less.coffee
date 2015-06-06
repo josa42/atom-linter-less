@@ -13,6 +13,15 @@ class LinterLess extends Linter
 
   parseLessFile: (data, filePath, callback) ->
 
+    lineOffset = 0;
+    variables= [];
+
+    if @config 'ignoreUndefinedVariables'
+      for variable in data.match(/@[a-zA-Z0-9_-]+/g)
+        lineOffset++
+        data = "#{variable}: 0;\n#{data}"
+
+
     parser = new less.Parser(
       verbose: false
       silent: true
@@ -34,7 +43,7 @@ class LinterLess extends Linter
 
       return callback([]) if not err or err.filename isnt filePath
 
-      lineIdx = Math.max 0, err.line - 1
+      lineIdx = Math.max 0, err.line - 1 - lineOffset
 
       callback([
         line: err.line,
