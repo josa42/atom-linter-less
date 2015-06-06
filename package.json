@@ -1,7 +1,7 @@
 {
   "name": "linter-less",
   "main": "./lib/init",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Lint `less` on the fly, using less",
   "linter-package": true,
   "repository": "https://github.com/AtomLinter/linter-less",
