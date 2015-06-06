@@ -5,11 +5,47 @@ path = require "path"
 less = require 'less'
 {Range} = require 'atom'
 
-class LinterLess extends Linter
+LinterLess =
 
-  @syntax: 'source.css.less'
+  scopes: ['source.css.less']
 
-  linterName: 'less'
+  scope: 'file'
+
+  lintOnFly: true
+
+  config:
+    ignoreUndefinedVariables:
+      type: 'boolean'
+      default: false
+    ieCompatibilityChecks:
+      title: 'IE Compatibility Checks'
+      type: 'boolean'
+      default: true
+    strictUnits:
+      type: 'boolean'
+      default: false
+      description: 'Allow mixed units, e.g. 1px+1em or 1px*1px which have units that cannot be represented.'
+    strictMath:
+      type: 'boolean'
+      default: false
+      description: 'Turn on or off strict math, where in strict mode, math requires brackets.'
+    includePath:
+      type: 'array'
+      description: 'Set include paths. Separated by \',\'.'
+      default: []
+      items:
+        type: 'string'
+
+  provideLinter: -> LinterLess
+
+  lint: (textEditor, textBuffer) ->
+
+    return new Promise (resolve, reject) =>
+
+      filePath = textEditor.getPath()
+      return resolve() unless filePath
+
+      @parseLessFile textBuffer.cachedText, filePath, resolve
 
   parseLessFile: (data, filePath, callback) ->
 
@@ -43,21 +79,11 @@ class LinterLess extends Linter
 
       return callback([]) if not err or err.filename isnt filePath
 
-      lineIdx = Math.max 0, err.line - 1 - lineOffset
-
       callback([
-        line: err.line,
-        col: err.column,
-        level: 'error',
+        type: "Error"
         message: err.message
-        linter: @linterName,
-        range: new Range([lineIdx, err.column], [lineIdx, @lineLengthForRow(lineIdx)])
+        position: [[err.line, err.column], [err.line, err.column]]
       ])
-
-  lintFile: (filePath, callback) ->
-    fs.readFile filePath, 'utf8', (err, data) =>
-      return callback([]) if err
-      @parseLessFile data, filePath, callback
 
   config: (key) ->
     atom.config.get "linter-less.#{key}"
