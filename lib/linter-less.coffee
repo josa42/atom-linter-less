@@ -36,6 +36,14 @@ LinterLess =
       items:
         type: 'string'
 
+  activate: ->
+    console.log 'activate linter-less' if atom.inDevMode()
+
+    if not atom.packages.getLoadedPackage 'linter'
+      atom.notifications.addError """
+        [linter-less] `linter` package not found, please install it
+      """
+
   provideLinter: -> LinterLess
 
   lint: (textEditor, textBuffer) ->
