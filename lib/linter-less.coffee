@@ -72,7 +72,7 @@ LinterLess =
     parser = new less.Parser(
       verbose: false
       silent: true
-      paths: [@cwd, @config('includePath')...]
+      paths: [@cwd, @getConfig('includePath')...]
       filename: filePath
     )
 
@@ -81,9 +81,9 @@ LinterLess =
       if not err
         try
           tree.toCSS(
-            ieCompat: @config 'ieCompatibilityChecks'
-            strictUnits: @config 'strictUnits'
-            strictMath: @config 'strictMath'
+            ieCompat: @getConfig 'ieCompatibilityChecks'
+            strictUnits: @getConfig 'strictUnits'
+            strictMath: @getConfig 'strictMath'
           )
         catch toCssErr
           err = toCssErr
@@ -96,7 +96,7 @@ LinterLess =
         position: [[err.line, err.column], [err.line, err.column]]
       ])
 
-  config: (key) ->
+  getConfig: (key) ->
     atom.config.get "linter-less.#{key}"
 
 module.exports = LinterLess
