@@ -1,9 +1,6 @@
-linterPath = atom.packages.getLoadedPackage("linter").path
-Linter = require "#{linterPath}/lib/linter"
 fs = require "fs"
 path = require "path"
 less = require 'less'
-{Range} = require 'atom'
 
 LinterLess =
 
