@@ -7,8 +7,6 @@ describe "Lint less", ->
     waitsForPromise -> atom.packages.activatePackage('linter-less')
     resetConfig()
 
-
-
   describe "Unrecognised input", ->
     it 'retuns one error "Unrecognised input"', ->
 
@@ -48,6 +46,7 @@ describe "Lint less", ->
               units: 'px' and 'em'.
             ")
             expect(messages[0].range).toEqual([[1, 2], [1, 20]])
+
 
   describe "undefined variable @fontSize", ->
 

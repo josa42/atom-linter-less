@@ -22,8 +22,6 @@ LinterLess =
       lineOffset = 0
       variables = []
 
-
-
       if @config 'ignoreUndefinedVariables'
         for variable in (text.match(/@[a-zA-Z0-9_-]+/g) or [])
           lineOffset++
@@ -34,7 +32,6 @@ LinterLess =
           variable = text.match(/@[a-zA-Z0-9_-]+/)
           lineOffset++
           text = "#{variable}: 0;\n#{text}"
-
 
       @lessParse text, filePath, (err) ->
 
