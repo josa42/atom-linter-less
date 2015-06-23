@@ -20,13 +20,6 @@ module.exports =
         Allow mixed units, e.g. 1px+1em or 1px*1px which have units that cannot
         be represented.
       """
-    strictMath:
-      type: 'boolean'
-      default: false
-      description: """
-        Turn on or off strict math, where in strict mode, math requires
-        brackets.
-      """
     includePath:
       type: 'array'
       description: 'Set include paths. Separated by \',\'.'
