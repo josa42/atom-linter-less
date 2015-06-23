@@ -1,5 +1,7 @@
 # linter-less
 
+[![Build Status](https://travis-ci.org/AtomLinter/linter-less.svg?branch=master)](https://travis-ci.org/AtomLinter/linter-less)
+
 This linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [less](http://lesscss.org).
 
 ## Configuration
