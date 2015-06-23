@@ -1,3 +1,9 @@
+## 1.0.0
+* Port linter service 1.0.0
+
+## 0.5.0
+* Add config option to ignore undefined variables
+
 ## 0.4.0
 * Add config for include path (#4)
 * Fix deprecationed calls

@@ -19,20 +19,23 @@ LinterLess =
 
       text = textEditor.getText()
 
-      lineOffset = 0;
-      variables= [];
+      lineOffset = 0
+      variables = []
+
+
 
       if @config 'ignoreUndefinedVariables'
-        for variable in text.match(/@[a-zA-Z0-9_-]+/g)
+        for variable in (text.match(/@[a-zA-Z0-9_-]+/g) or [])
           lineOffset++
           text = "#{variable}: 0;\n#{text}"
 
-      @lessParse text, filePath, (err) =>
+      @lessParse text, filePath, (err) ->
 
         return resolve([]) unless err
 
         lineIdx = err.line - 1 - lineOffset
-        colEndIdx = textEditor.lineTextForBufferRow(lineIdx).length
+        line = textEditor.lineTextForBufferRow(lineIdx)
+        colEndIdx = line.length if line
 
         resolve([
           type: "Error"
@@ -40,6 +43,7 @@ LinterLess =
           filePath: err.filename
           range: [[lineIdx, err.column], [lineIdx, colEndIdx]]
         ])
+
 
   lessParse: (text, filePath, callback) ->
     parser = new less.Parser(
