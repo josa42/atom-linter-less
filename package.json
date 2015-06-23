@@ -1,6 +1,6 @@
 {
   "name": "linter-less",
-  "main": "./lib/linter-less",
+  "main": "./lib/init",
 
   "version": "1.0.0",
 
@@ -8,7 +8,6 @@
 
   "repository": "https://github.com/AtomLinter/linter-less",
   "license": "MIT",
-
 
   "scripts": {
     "lint": "coffeelint lib"
