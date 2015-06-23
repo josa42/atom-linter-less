@@ -6,6 +6,10 @@ LinterLessProvider = require './linter-less-provider'
 module.exports =
 
   config:
+    ignoreUndefinedGlobalVariables:
+      type: 'boolean'
+      default: false
+      description: "Ignore variables marked as global e.g. // global: @fontSize"
     ignoreUndefinedVariables:
       type: 'boolean'
       default: false

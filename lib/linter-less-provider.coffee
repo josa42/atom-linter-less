@@ -29,6 +29,13 @@ LinterLess =
           lineOffset++
           text = "#{variable}: 0;\n#{text}"
 
+      if @config 'ignoreUndefinedGlobalVariables'
+        for line in (text.match(/(^|\n)\/\/\s*global:\s*@[a-zA-Z0-9_-]+/g) or [])
+          variable = text.match(/@[a-zA-Z0-9_-]+/)
+          lineOffset++
+          text = "#{variable}: 0;\n#{text}"
+
+
       @lessParse text, filePath, (err) ->
 
         return resolve([]) unless err
