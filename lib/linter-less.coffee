@@ -4,7 +4,7 @@ less = require 'less'
 
 LinterLess =
 
-  scopes: ['source.css.less']
+  grammarScopes: ['source.css.less']
 
   scope: 'file'
 
@@ -49,26 +49,38 @@ LinterLess =
 
   provideLinter: -> LinterLess
 
-  lint: (textEditor, textBuffer) ->
+  lint: (textEditor) ->
 
     return new Promise (resolve, reject) =>
 
       filePath = textEditor.getPath()
-      return resolve() unless filePath
+      return resolve([]) unless filePath
 
-      @parseLessFile textBuffer.cachedText, filePath, resolve
+      text = textEditor.getText()
 
-  parseLessFile: (data, filePath, callback) ->
+      lineOffset = 0;
+      variables= [];
 
-    lineOffset = 0;
-    variables= [];
+      if @getConfig 'ignoreUndefinedVariables'
+        for variable in text.match(/@[a-zA-Z0-9_-]+/g)
+          lineOffset++
+          text = "#{variable}: 0;\n#{text}"
 
-    if @config 'ignoreUndefinedVariables'
-      for variable in data.match(/@[a-zA-Z0-9_-]+/g)
-        lineOffset++
-        data = "#{variable}: 0;\n#{data}"
+      @parse text, filePath, (err) =>
 
+        return resolve([]) unless err
 
+        lineIdx = err.line - 1 - lineOffset
+        colEndIdx = textEditor.lineTextForBufferRow(lineIdx).length
+
+        resolve([
+          type: "Error"
+          text: err.message
+          filePath: err.filename
+          range: [[lineIdx, err.column], [lineIdx, colEndIdx]]
+        ])
+
+  parse: (text, filePath, callback) ->
     parser = new less.Parser(
       verbose: false
       silent: true
@@ -76,8 +88,7 @@ LinterLess =
       filename: filePath
     )
 
-    parser.parse data, (err, tree) =>
-
+    parser.parse text, (err, tree) =>
       if not err
         try
           tree.toCSS(
@@ -88,13 +99,7 @@ LinterLess =
         catch toCssErr
           err = toCssErr
 
-      return callback([]) if not err or err.filename isnt filePath
-
-      callback([
-        type: "Error"
-        message: err.message
-        position: [[err.line, err.column], [err.line, err.column]]
-      ])
+      callback err
 
   getConfig: (key) ->
     atom.config.get "linter-less.#{key}"
