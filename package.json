@@ -1,26 +1,19 @@
 {
   "name": "linter-less",
   "main": "./lib/init",
-
-  "version": "1.0.0",
-
+  "version": "2.0.0",
   "description": "Lint `less` on the fly, using less",
-
   "repository": "https://github.com/AtomLinter/linter-less",
   "license": "MIT",
-
   "scripts": {
     "lint": "coffeelint lib"
   },
-
   "engines": {
     "atom": ">0.50.0"
   },
-
   "dependencies": {
     "less": "^1.7.5"
   },
-
   "providedServices": {
     "linter": {
       "versions": {
