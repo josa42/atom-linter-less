@@ -82,3 +82,26 @@ describe "Lint less", ->
           .then (messages) ->
 
             expect(messages.length).toEqual(0)
+
+    it 'return error "\'<file>\' was not found"', ->
+
+      atom.config.set("linter-less.ignoreUndefinedGlobalVariables", true)
+
+      waitsForPromise ->
+        atom.workspace.open('./files/import-missing.less')
+          .then (editor) -> LinterLessProvider.lint(editor)
+          .then (messages) ->
+
+            expect(messages.length).toEqual(1)
+            expect(messages[0].text).toEqual("'./icons.css' wasn't found")
+
+    it 'should handle relative imports', ->
+
+      atom.config.set("linter-less.ignoreUndefinedGlobalVariables", true)
+
+      waitsForPromise ->
+        atom.workspace.open('./files/success-import.less')
+          .then (editor) -> LinterLessProvider.lint(editor)
+          .then (messages) ->
+
+            expect(messages.length).toEqual(0)
