@@ -50,10 +50,13 @@ LinterLess =
 
 
   lessParse: (text, filePath, callback) ->
+
+    cwd = path.dirname filePath
+
     parser = new less.Parser(
       verbose: false
       silent: true
-      paths: [@cwd, @config('includePath')...]
+      paths: [cwd, @config('includePath')...]
       filename: filePath
     )
 
