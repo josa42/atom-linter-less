@@ -63,9 +63,7 @@ LinterLess =
       strictMath: @config 'strictMath'
 
     less.render text, options, (error, output) ->
-      console.log error, output
-
-      callback error if error
+      callback error
 
   config: (key) ->
     atom.config.get "linter-less.#{key}"

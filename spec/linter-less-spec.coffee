@@ -93,7 +93,8 @@ describe "Lint less", ->
           .then (messages) ->
 
             expect(messages.length).toEqual(1)
-            expect(messages[0].text).toEqual("'./icons.css' wasn't found")
+            expect(messages[0].text.replace(/(Tried -) .*$/, '$1 <paths>'))
+              .toEqual("'./icons.css' wasn't found. Tried - <paths>")
 
     it 'should handle relative imports', ->
 
