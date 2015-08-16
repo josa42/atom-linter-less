@@ -105,3 +105,16 @@ describe "Lint less", ->
           .then (messages) ->
 
             expect(messages.length).toEqual(0)
+
+    describe "auto import files", ->
+
+      it 'returns no error', ->
+
+        atom.config.set("linter-less.autoImportFiles", ["files/variables.less"])
+
+        waitsForPromise ->
+          atom.workspace.open('./files/error-undefined-variable.less')
+            .then (editor) -> LinterLessProvider.lint(editor)
+            .then (messages) ->
+
+              expect(messages.length).toEqual(0)
