@@ -1,4 +1,5 @@
 ## 2.2.0
+* Add name to
 * Automatically install linter package
 
 ## 2.1.0
@@ -16,7 +17,7 @@
 
 ## 0.4.0
 * Add config for include path (#4)
-* Fix deprecationed calls
+* Fix deprecated calls
 * Upgrade config
 
 ## 0.3.1

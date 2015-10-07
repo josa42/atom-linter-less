@@ -4,6 +4,8 @@ less = require 'less'
 
 LinterLess =
 
+  name: "Less"
+
   grammarScopes: ['source.css.less']
 
   scope: 'file'
