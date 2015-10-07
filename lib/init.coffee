@@ -2,6 +2,7 @@ fs = require "fs"
 path = require "path"
 less = require 'less'
 LinterLessProvider = require './linter-less-provider'
+packageDeps = require 'atom-package-deps'
 
 module.exports =
 
@@ -34,9 +35,6 @@ module.exports =
   activate: ->
     console.log 'activate linter-less' if atom.inDevMode()
 
-    if not atom.packages.getLoadedPackage 'linter'
-      atom.notifications.addError """
-        [linter-less] `linter` package not found, please install it
-      """
+    packageDeps.install 'linter-less'
 
   provideLinter: -> LinterLessProvider
