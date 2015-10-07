@@ -31,6 +31,12 @@ module.exports =
       default: []
       items:
         type: 'string'
+    autoImportFiles:
+      type: 'array'
+      description: 'Auto import these files before linting. Separated by \',\'.'
+      default: []
+      items:
+        type: 'string'
 
   activate: ->
     console.log 'activate linter-less' if atom.inDevMode()

@@ -35,6 +35,11 @@ LinterLess =
           lineOffset++
           text = "#{variable}: 0;\n#{text}"
 
+      if files = @config 'autoImportFiles'
+        for file in files
+          lineOffset++
+          text = "@import \"#{file}\";\n#{text}"
+
       @lessParse text, filePath, (err) ->
 
         return resolve([]) unless err
@@ -58,7 +63,7 @@ LinterLess =
     options =
       verbose: false
       silent: true
-      paths: [cwd, @config('includePath')...]
+      paths: [cwd, atom.project.getPaths()..., @config('includePath')...]
       filename: filePath
       ieCompat: @config 'ieCompatibilityChecks'
       strictUnits: @config 'strictUnits'
