@@ -1,3 +1,6 @@
+## 2.3.0
+* Convert to JS
+
 ## 2.2.0
 * Add name to provider
 * Automatically install linter package

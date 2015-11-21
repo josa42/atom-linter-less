@@ -1,3 +1,4 @@
+path = require 'path'
 { resetConfig } = require './test-helper'
 
 LinterLessProvider = require '../lib/linter-less-provider'
@@ -11,7 +12,7 @@ describe "Lint less", ->
     it 'retuns one error "Unrecognised input"', ->
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-unrecognised-input.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-unrecognised-input.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -25,7 +26,7 @@ describe "Lint less", ->
     it 'retuns no errors', ->
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-strict-units.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-strict-units.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -36,7 +37,7 @@ describe "Lint less", ->
       atom.config.set("linter-less.strictUnits", true)
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-strict-units.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-strict-units.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -53,7 +54,7 @@ describe "Lint less", ->
     it 'retuns one error "variable @fontSize is undefined"', ->
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-undefined-variable.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-undefined-variable.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -66,7 +67,7 @@ describe "Lint less", ->
       atom.config.set("linter-less.ignoreUndefinedVariables", true)
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-undefined-variable.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-undefined-variable.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -77,7 +78,7 @@ describe "Lint less", ->
       atom.config.set("linter-less.ignoreUndefinedGlobalVariables", true)
 
       waitsForPromise ->
-        atom.workspace.open('./files/error-undefined-variable.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'error-undefined-variable.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -88,7 +89,7 @@ describe "Lint less", ->
       atom.config.set("linter-less.ignoreUndefinedGlobalVariables", true)
 
       waitsForPromise ->
-        atom.workspace.open('./files/import-missing.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'import-missing.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
@@ -101,7 +102,7 @@ describe "Lint less", ->
       atom.config.set("linter-less.ignoreUndefinedGlobalVariables", true)
 
       waitsForPromise ->
-        atom.workspace.open('./files/success-import.less')
+        atom.workspace.open(path.join(__dirname, 'files', 'success-import.less'))
           .then (editor) -> LinterLessProvider.lint(editor)
           .then (messages) ->
 
