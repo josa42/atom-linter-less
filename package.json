@@ -1,7 +1,7 @@
 {
   "name": "linter-less",
   "main": "./lib/init",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Lint `less` on the fly, using less",
   "repository": "https://github.com/AtomLinter/linter-less",
   "license": "MIT",
