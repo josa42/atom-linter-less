@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "version": "2.3.1",
   "description": "Lint `less` on the fly, using less",
-  "repository": "https://github.com/AtomLinter/linter-less",
+  "repository": "https://github.com/josa42/linter-less",
   "license": "MIT",
   "scripts": {
     "lint": "coffeelint lib"

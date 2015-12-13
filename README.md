@@ -1,12 +1,12 @@
 # linter-less
 
-[![Build Status](https://img.shields.io/travis/AtomLinter/linter-less.svg?style=flat-square)](https://travis-ci.org/AtomLinter/linter-less)
+[![Build Status](https://img.shields.io/travis/josa42/linter-less.svg?style=flat-square)](https://travis-ci.org/josa42/linter-less)
 [![Plugin installs!](https://img.shields.io/apm/dm/linter-less.svg?style=flat-square)](https://atom.io/packages/linter-less)
 [![Package version!](https://img.shields.io/apm/v/linter-less.svg?style=flat-square)](https://atom.io/packages/linter-less)
-[![Dependencies!](https://img.shields.io/david/AtomLinter/linter-less.svg?style=flat-square)](https://david-dm.org/AtomLinter/linter-less)
+[![Dependencies!](https://img.shields.io/david/josa42/linter-less.svg?style=flat-square)](https://david-dm.org/josa42/linter-less)
 
 
-This linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [less](http://lesscss.org).
+This linter plugin for [Linter](https://github.com/atom-community/linter) provides an interface to [less](http://lesscss.org).
 
 ## Configuration
 
