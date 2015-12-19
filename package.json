@@ -6,7 +6,7 @@
   "repository": "https://github.com/josa42/atom-linter-less",
   "license": "MIT",
   "scripts": {
-    "lint": "coffeelint lib"
+    "lint": "eslint lib"
   },
   "engines": {
     "atom": ">0.50.0"
@@ -26,6 +26,7 @@
     }
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.5"
+    "babel-eslint": "^4.1.5",
+    "eslint": "^1.10.3"
   }
 }
