@@ -1,3 +1,8 @@
+# Changelog
+
+## 2.4.0
+* Add supoort for .lessrc configutation file
+
 ## 2.3.0
 * Convert to JS
 
