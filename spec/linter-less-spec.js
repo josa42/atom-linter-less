@@ -99,15 +99,41 @@ describe('Lint less', () => {
     })
   })
 
-  describe('Unrecognised input', () => {
+  describe('lessrc config', () => {
 
-    it('retuns one error "Unrecognised input"', () => {
+    it('retuns one error and respect lessrc.strictUnits', () => {
       waitsForPromise(() =>
-        lint(path.join(__dirname, 'files', 'rc', 'test.less'))
+        lint(path.join(__dirname, 'files', 'lessrc', 'test.less'))
           .then((messages) => {
-            // expect(messages.length).toEqual(1)
-            // expect(messages[0].text).toEqual('Unrecognised input')
-            // expect(messages[0].range).toEqual([[0, 0], [0, 4]])
+            expect(messages.length).toEqual(1)
+          })
+      )
+    })
+
+    it('retuns no errors and ignores invalid lessrc', () => {
+      waitsForPromise(() =>
+        lint(path.join(__dirname, 'files', 'lessrc-invalid', 'test.less'))
+          .then((messages) => {
+            expect(messages.length).toEqual(0)
+          })
+      )
+    })
+
+    it('retuns no errors if import from lessrc.paths', () => {
+      waitsForPromise(() =>
+        lint(path.join(__dirname, 'files', 'lessrc', 'test-import.less'))
+          .then((messages) => {
+            expect(messages.length).toEqual(0)
+          })
+      )
+    })
+
+    it('retuns one error if ignoreLessrc is true', () => {
+      atom.config.set('linter-less.ignoreLessrc', true)
+      waitsForPromise(() =>
+        lint(path.join(__dirname, 'files', 'lessrc', 'test-import.less'))
+          .then((messages) => {
+            expect(messages.length).toEqual(1)
           })
       )
     })
