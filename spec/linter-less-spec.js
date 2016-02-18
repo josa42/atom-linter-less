@@ -51,7 +51,6 @@ describe('Lint less', () => {
   describe('mixins', () => {
 
     it('ignores undefined mixins', () => {
-      atom.config.set('linter-less.ignoreUndefinedMixins', true)
       waitsForPromise(() =>
         lint(path.join(__dirname, 'files', 'error-undefined-mixins.less'))
           .then((messages) => expect(messages.length).toEqual(0))
@@ -59,6 +58,7 @@ describe('Lint less', () => {
     })
 
     it('report undefined mixins', () => {
+      atom.config.set('linter-less.ignoreUndefinedMixins', false)
       waitsForPromise(() =>
         lint(path.join(__dirname, 'files', 'error-undefined-mixins.less'))
           .then((messages) => {
@@ -73,6 +73,7 @@ describe('Lint less', () => {
   describe('undefined variable @fontSize', () => {
 
     it('retuns one error "variable @fontSize is undefined"', () => {
+      atom.config.set('linter-less.ignoreUndefinedVariables', false)
       waitsForPromise(() =>
         lint(path.join(__dirname, 'files', 'error-undefined-variable.less'))
           .then((messages) => {
@@ -85,7 +86,6 @@ describe('Lint less', () => {
     })
 
     it('ignores undefined variables', () => {
-      atom.config.set('linter-less.ignoreUndefinedVariables', true)
       waitsForPromise(() =>
         lint(path.join(__dirname, 'files', 'error-undefined-variable.less'))
           .then((messages) => expect(messages.length).toEqual(0))
