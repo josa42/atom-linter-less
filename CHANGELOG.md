@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.5.0
+* Add config option to ignore undefined mixins
+
 ## 2.4.0
 * Add supoort for .lessrc configutation file
 
