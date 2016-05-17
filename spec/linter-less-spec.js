@@ -53,7 +53,7 @@ describe('Lint less', () => {
     it('ignores undefined mixins', () => {
       waitsForPromise(() =>
         lint(path.join(__dirname, 'files', 'error-undefined-mixins.less'))
-          .then((messages) => console.log(messages) || expect(messages.length).toEqual(0))
+          .then((messages) => expect(messages.length).toEqual(0))
       )
     })
 
