@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.6.0
+* Update less to 2.7
+
 ## 2.5.0
 * Add config option to ignore undefined mixins
 * Ignore undefined mixins and variables by default
