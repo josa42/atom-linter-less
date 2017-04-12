@@ -12,6 +12,7 @@ This linter plugin for [Linter](https://github.com/atom-community/linter) provid
 
 * **Ignore undefined global variables:** Ignore variables marked as global e.g. `// global: @fontSize`
 * **Ignore undefined variables**
+* **Ignore undefined mixins**
 * **IE Compatibility Checks**
 * **Strict Math:** Turn on or off strict math, where in strict mode, math requires brackets.
 * **Strict Units:** Disallow mixed units, e.g. `1px+1em` or `1px*1px` which have units that cannot be represented.
