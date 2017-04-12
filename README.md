@@ -14,7 +14,7 @@ This linter plugin for [Linter](https://github.com/atom-community/linter) provid
 * **Ignore undefined variables**
 * **IE Compatibility Checks**
 * **Strict Math:** Turn on or off strict math, where in strict mode, math requires brackets.
-* **Strict Units:** Allow mixed units, e.g. `1px+1em` or `1px*1px` which have units that cannot be represented.
+* **Strict Units:** Disallow mixed units, e.g. `1px+1em` or `1px*1px` which have units that cannot be represented.
 * **Ignore .lessrc configutation file**
 
 See also: [lesscss.org](http://lesscss.org/usage/#command-line-usage).
