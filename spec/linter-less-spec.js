@@ -2,7 +2,6 @@
 
 import path from 'path'
 import { resetConfig, lint } from './test-helper'
-import LinterLessProvider from '../lib/linter-less-provider'
 
 describe('Lint less', () => {
   beforeEach(() => {
